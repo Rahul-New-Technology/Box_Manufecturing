@@ -1,0 +1,7 @@
+This is a placeholder file. When you add actual images to this folder, please name them:
+- image1.jpg (main cover image)
+- image2.jpg
+- image3.jpg
+- etc.
+
+For now, the system will use a placeholder image from the web.
