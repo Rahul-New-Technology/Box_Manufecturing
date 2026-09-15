@@ -1,7 +1,7 @@
 # Cloudflare Pages SPA redirect configuration
-# This file works with Cloudflare Pages Dashboard deployment (not Wrangler CLI)
+# This file handles client-side routing for React Router
 
-# Static assets - serve directly
+# Static assets - serve directly without redirect
 /static/* /static/:splat 200
 /images/* /images/:splat 200
 /robots.txt /robots.txt 200
@@ -9,6 +9,16 @@
 /favicon.ico /favicon.ico 200
 /manifest.json /manifest.json 200
 
-# SPA fallback - redirect all other routes to index.html
-# Using 302 status to avoid infinite loop detection
-/* /index.html 302
+# SPA fallback - exclude files with extensions, redirect routes to index.html
+# This pattern matches URLs without file extensions
+/custom-packaging /index.html 200
+/products /index.html 200
+/about /index.html 200
+/contact /index.html 200
+/industries /index.html 200
+/manufacturing /index.html 200
+/gallery /index.html 200
+/blog /index.html 200
+/quote /index.html 200
+/products/* /index.html 200
+/blog/* /index.html 200
