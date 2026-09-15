@@ -21,3 +21,6 @@ dir = "frontend/build"
 
 # Redirects for SPA routing (also handled by _redirects file in public folder)
 # Cloudflare Pages will automatically use the _redirects file from the build output
+
+# GitHub integration settings
+# Production branch: main

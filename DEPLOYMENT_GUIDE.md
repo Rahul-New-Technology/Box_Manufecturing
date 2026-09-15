@@ -8,7 +8,7 @@ This guide will help you deploy the GN Packaging website to Cloudflare Pages usi
 
 ```bash
 # Push to your GitHub repository
-git push -u origin master
+git push -u origin main
 ```
 
 ### Step 2: Connect to Cloudflare Pages
@@ -29,7 +29,7 @@ git push -u origin master
 4. **Configure build settings:**
    ```
    Project name: gnpackaging
-   Production branch: master
+   Production branch: main
    Framework preset: None
    Build command: cd frontend && npm install && npm run build
    Build output directory: frontend/build
@@ -120,7 +120,7 @@ dir = "frontend/build"
 
 Once connected, Cloudflare Pages will automatically:
 
-1. **Watch for changes** on the `master` branch
+1. **Watch for changes** on the `main` branch
 2. **Trigger builds** when you push new commits
 3. **Deploy updates** automatically after successful builds
 4. **Provide preview URLs** for pull requests
@@ -193,12 +193,24 @@ For testing before production:
 3. Push to GitHub: `git push origin feature/new-feature`
 4. Cloudflare will create a preview deployment
 5. Share the preview URL for testing
+6. Merge to main when ready for production
 
 ## 📞 Support
 
 - **Cloudflare Pages Docs:** https://developers.cloudflare.com/pages/
 - **GitHub Integration Guide:** https://developers.cloudflare.com/pages/git-integration/
 - **Build Configuration:** https://developers.cloudflare.com/pages/configuration/build-configuration/
+
+## 🔄 Future Updates
+
+After initial setup, simply:
+```bash
+git add .
+git commit -m "Your update message"
+git push origin main
+```
+
+Cloudflare will automatically build and deploy your changes!
 
 ## ✅ Pre-Deployment Checklist
 
