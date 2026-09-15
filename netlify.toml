@@ -3,10 +3,12 @@
   command = "npm install && npm run build"
   publish = "build"
 
+# SPA redirect for Cloudflare Pages (not Netlify - will be ignored by Cloudflare)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
 [[headers]]
   for = "/*"
