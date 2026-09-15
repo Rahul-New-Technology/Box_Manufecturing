@@ -1,9 +1,7 @@
 # Cloudflare Pages SPA redirect configuration
 # Redirect all routes to index.html for client-side routing
-# Exclude static assets and files
 
 # Static assets - serve directly
-/assets/* /assets/:splat 200
 /static/* /static/:splat 200
 /images/* /images/:splat 200
 /robots.txt /robots.txt 200
@@ -12,4 +10,5 @@
 /manifest.json /manifest.json 200
 
 # SPA fallback - redirect all other routes to index.html
+# This rule must come last to avoid conflicts with static assets
 /* /index.html 200
