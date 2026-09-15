@@ -44,18 +44,26 @@ git push -u origin main
    - Click **Save and Deploy**
    - Wait for the build to complete (usually 2-5 minutes)
 
-### Step 3: Configure Custom Domain
+### Step 3: Configure SPA Routing
 
 1. **After successful deployment:**
    - Go to your Pages project in Cloudflare Dashboard
-   - Click **Custom domains**
+   - Click **Settings** → **Builds & deployments**
 
-2. **Add your domain:**
+2. **Configure Single Page App routing:**
+   - Scroll to **Single Page Application** section
+   - Enable **SPA fallback**
+   - This will redirect all routes to index.html for React Router
+
+### Step 4: Configure Custom Domain
+
+1. **Add your domain:**
+   - Click **Custom domains**
    - Click **Set up a custom domain**
    - Enter: `gnpackaging.in`
    - For the main domain, add: `www.gnpackaging.in`
 
-3. **Update DNS records:**
+2. **Update DNS records:**
    - Cloudflare will automatically create the required DNS records
    - Update your domain's nameservers to Cloudflare if not already done
 
@@ -83,23 +91,20 @@ Leave empty (uses repository root)
 
 ## 🔧 Configuration Files
 
-### `frontend/public/_redirects`
+### `frontend/public/_headers`
+This file sets security headers for your website:
 ```
-# Cloudflare Pages SPA redirect configuration
-# Redirect all routes to index.html for client-side routing
+# Cloudflare Pages headers configuration
+# This helps with SPA routing and caching
 
-# Static assets - serve directly
-/assets/* /assets/:splat 200
-/static/* /static/:splat 200
-/images/* /images/:splat 200
-/robots.txt /robots.txt 200
-/sitemap.xml /sitemap.xml 200
-/favicon.ico /favicon.ico 200
-/manifest.json /manifest.json 200
-
-# SPA fallback - redirect all other routes to index.html
-/* /index.html 200
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
 ```
+
+**Note:** SPA routing is configured in Cloudflare Pages Dashboard, not via configuration files.
 
 ## 🔄 Automatic Deployments
 
@@ -135,7 +140,10 @@ To manually trigger a deployment:
 
 **Problem:** Direct URLs return 404 errors
 
-**Solution:** Ensure `_redirects` file exists in `frontend/public/` with the correct configuration.
+**Solution:** Configure SPA fallback in Cloudflare Pages Dashboard:
+- Go to your Pages project
+- Click **Settings** → **Builds & deployments**
+- Enable **SPA fallback** in the Single Page Application section
 
 ### Images Not Loading
 
@@ -200,10 +208,10 @@ Cloudflare will automatically build and deploy your changes!
 ## ✅ Pre-Deployment Checklist
 
 - [ ] Repository pushed to GitHub
-- [ ] `_redirects` file in `frontend/public/`
 - [ ] All dependencies in `package.json`
 - [ ] Build command tested locally
 - [ ] Environment variables configured (if needed)
+- [ ] SPA fallback enabled in Cloudflare Pages Dashboard
 - [ ] Custom domain configured
 - [ ] DNS records updated
 - [ ] SSL certificate active (automatic with Cloudflare)
