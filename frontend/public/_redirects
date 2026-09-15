@@ -1,5 +1,5 @@
 # SPA routing for Cloudflare Pages
-# Static assets
+# Static assets - serve directly
 /static/* /static/:splat 200
 /images/* /images/:splat 200
 /robots.txt /robots.txt 200
@@ -7,17 +7,5 @@
 /favicon.ico /favicon.ico 200
 /manifest.json /manifest.json 200
 
-# SPA routes - redirect to index.html
-/custom-packaging /index.html 200
-/products /index.html 200
-/about /index.html 200
-/contact /index.html 200
-/industries /index.html 200
-/manufacturing /index.html 200
-/gallery /index.html 200
-/blog /index.html 200
-/quote /index.html 200
-
-# Dynamic routes
-/products/* /index.html 200
-/blog/* /index.html 200
+# SPA fallback - all routes go to index.html
+/* /index.html 200
