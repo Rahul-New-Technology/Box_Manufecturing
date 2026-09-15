@@ -1,0 +1,14 @@
+# Cloudflare Pages SPA redirect configuration
+# This file works with Cloudflare Pages Dashboard deployment (not Wrangler CLI)
+
+# Static assets - serve directly
+/static/* /static/:splat 200
+/images/* /images/:splat 200
+/robots.txt /robots.txt 200
+/sitemap.xml /sitemap.xml 200
+/favicon.ico /favicon.ico 200
+/manifest.json /manifest.json 200
+
+# SPA fallback - redirect all other routes to index.html
+# Using 302 status to avoid infinite loop detection
+/* /index.html 302
