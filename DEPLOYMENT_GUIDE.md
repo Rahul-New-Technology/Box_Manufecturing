@@ -83,21 +83,6 @@ Leave empty (uses repository root)
 
 ## 🔧 Configuration Files
 
-### `wrangler.toml`
-```toml
-name = "gnpackaging"
-compatibility_date = "2024-01-01"
-
-[build]
-command = "cd frontend && npm install && npm run build"
-cwd = "."
-watch_dirs = ["frontend"]
-
-[build.upload]
-format = "directory"
-dir = "frontend/build"
-```
-
 ### `frontend/public/_redirects`
 ```
 # Cloudflare Pages SPA redirect configuration
@@ -215,7 +200,6 @@ Cloudflare will automatically build and deploy your changes!
 ## ✅ Pre-Deployment Checklist
 
 - [ ] Repository pushed to GitHub
-- [ ] `wrangler.toml` configured correctly
 - [ ] `_redirects` file in `frontend/public/`
 - [ ] All dependencies in `package.json`
 - [ ] Build command tested locally

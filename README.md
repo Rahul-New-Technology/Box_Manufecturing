@@ -20,9 +20,9 @@ Box_Manufecturing-main/
 │   │   └── config/        # Configuration files
 │   ├── package.json       # Frontend dependencies
 │   └── craco.config.js    # Build configuration
-├── wrangler.toml          # Cloudflare Pages configuration
 ├── package.json           # Root package.json
-└── README.md             # This file
+├── README.md             # This file
+└── DEPLOYMENT_GUIDE.md   # Deployment instructions
 ```
 
 ## 🚀 Deployment Instructions
@@ -78,13 +78,9 @@ For manual deployments when needed.
    npx wrangler pages deploy frontend/build --project-name=gnpackaging
    ```
 
-## 🔧 Configuration Files
+**Note:** For GitHub integration deployment, Method 1 is recommended and requires no Wrangler CLI.
 
-### `wrangler.toml`
-Cloudflare Pages configuration file that defines:
-- Build commands
-- Output directory
-- Project settings
+## 🔧 Configuration Files
 
 ### `frontend/public/_redirects`
 Handles SPA routing for React Router:
