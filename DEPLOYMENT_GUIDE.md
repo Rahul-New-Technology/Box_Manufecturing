@@ -55,6 +55,8 @@ git push -u origin main
    - Enable **SPA fallback**
    - This will redirect all routes to index.html for React Router
 
+**Note:** The `_redirects` file in `frontend/public/` handles specific route redirects as a backup.
+
 ### Step 4: Configure Custom Domain
 
 1. **Add your domain:**
@@ -91,6 +93,34 @@ Leave empty (uses repository root)
 
 ## 🔧 Configuration Files
 
+### `frontend/public/_redirects`
+This file handles SPA routing for React Router:
+```
+# Cloudflare Pages SPA redirect configuration
+# This file handles client-side routing for React Router
+
+# Static assets - serve directly without redirect
+/static/* /static/:splat 200
+/images/* /images/:splat 200
+/robots.txt /robots.txt 200
+/sitemap.xml /sitemap.xml 200
+/favicon.ico /favicon.ico 200
+/manifest.json /manifest.json 200
+
+# SPA fallback - exclude files with extensions, redirect routes to index.html
+/custom-packaging /index.html 200
+/products /index.html 200
+/about /index.html 200
+/contact /index.html 200
+/industries /index.html 200
+/manufacturing /index.html 200
+/gallery /index.html 200
+/blog /index.html 200
+/quote /index.html 200
+/products/* /index.html 200
+/blog/* /index.html 200
+```
+
 ### `frontend/public/_headers`
 This file sets security headers for your website:
 ```
@@ -103,8 +133,6 @@ This file sets security headers for your website:
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
 ```
-
-**Note:** SPA routing is configured in Cloudflare Pages Dashboard, not via configuration files.
 
 ## 🔄 Automatic Deployments
 
@@ -140,10 +168,12 @@ To manually trigger a deployment:
 
 **Problem:** Direct URLs return 404 errors
 
-**Solution:** Configure SPA fallback in Cloudflare Pages Dashboard:
-- Go to your Pages project
-- Click **Settings** → **Builds & deployments**
-- Enable **SPA fallback** in the Single Page Application section
+**Solution:** Ensure both configurations are in place:
+1. **_redirects file** - Check that `frontend/public/_redirects` exists with correct route patterns
+2. **SPA fallback** - Enable in Cloudflare Pages Dashboard:
+   - Go to your Pages project
+   - Click **Settings** → **Builds & deployments**
+   - Enable **SPA fallback** in the Single Page Application section
 
 ### Images Not Loading
 
@@ -208,6 +238,7 @@ Cloudflare will automatically build and deploy your changes!
 ## ✅ Pre-Deployment Checklist
 
 - [ ] Repository pushed to GitHub
+- [ ] `_redirects` file in `frontend/public/`
 - [ ] All dependencies in `package.json`
 - [ ] Build command tested locally
 - [ ] Environment variables configured (if needed)
